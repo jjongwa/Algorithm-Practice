@@ -1,27 +1,36 @@
+INF = float('inf')
+
 TC = int(input())
 for tc in range(TC):
     N, M, W = map(int,input().split())
-    way = [[] for _ in range(N+1)]
-    
+    way = []
     
     for m in range(M):
         S, E, T = map(int,input().split())
-        way[S].append([E,T])
-        way[E].append([S,T])
+        way.append([S,E,T])
+        way.append([E,S,T])
     for w in range(W):
         S, E, T = map(int,input().split())
-        way[S].append([E,-T])      
+        way.append([S,E,-T])    
+
+    def travel(start):
+        dist = [5000 * 10000] * (N+1)
+        dist[start] = 0
+        for i in range(N):
+            for s,e,t in way:
+                if dist[e] > dist[s] + t:
+                    dist[e] = dist[s] + t
+                    if i == N-1:
+                        return -1
+        return 1
+    ans = 0
     
-    #print(way)
-    ansList = []
-    def travel(start, now, time):
-        for i in range(len(way[now])):
-            if start == way[now][i][0]:
-                ansList.append(time+way[now][i][1])
-            else:
-                travel(start, way[now][i][0],time+ way[now][i][1])
+    if travel(1) == -1:
+        print('YES')
+        ans = 1
+        
+    if ans == 0:
+        print('NO')
 
-    for i in range(1,N+1,1):
-        travel(i,i,0)
-
-    print(ansList)
+        
+    #hint:  Bellman-Ford Algorithm
