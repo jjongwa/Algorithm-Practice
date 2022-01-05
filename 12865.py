@@ -1,14 +1,13 @@
 N, K = map(int,input().split())
+dpList = [[0 for _ in range(K+1)] for _ in range(N+1)]
+#print(dpList)
 thingList = []
+
 for _ in range(N):
     W, V = map(int,input().split())
     thingList.append([W,V])
 
 
-def knapsack(capacity, n):
-    if capacity == 0 or n == 0:
-        return 0
-    if size[n-1] > capasity:
-        return knapsack(capacity, n-1)
-    else:
-        return max()
+def knapsack(K, thingList):
+    for i in range(len(thingList)):
+        for j in range(K+1):
