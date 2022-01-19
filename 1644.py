@@ -60,7 +60,9 @@ for i in range(2, int(math.sqrt(n))+1):
 for i in range(len(arr)):
     if arr[i] == True:
         primeList.append(i)
-
+primeList.remove(0)
+primeList.remove(1)
+#print(primeList)
 ans = 0
 tmp = 0
 end = 0
