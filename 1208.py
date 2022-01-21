@@ -7,8 +7,8 @@ nums = list(map(int,input().split()))
 left = nums[:N//2]
 right = nums[N//2:]
 
-leftsum = defaultdict(int)
-rightsum = defaultdict(int)
+leftsum = defaultdict(int)              ####
+rightsum = defaultdict(int)             ####
 leftsum[0] = 1
 rightsum[0] = 1
 
