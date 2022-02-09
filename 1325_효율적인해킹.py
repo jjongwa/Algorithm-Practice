@@ -31,6 +31,7 @@ for i in range(1, N+1):
 
 m = max(ansList)
 ans = [i for i, v in enumerate(ansList) if v == m]
+# m을 max값으로 놓고 enumerate를 이용해 i(index), v(값)을 구해 i만 뽑아낸다
 
 for i in ans:
     print(i, end=' ')
