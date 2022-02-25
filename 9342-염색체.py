@@ -1,6 +1,3 @@
-from click import confirm
-
-
 T = int(input())
 for _ in range(T):
     #check = {'A':0, 'B':0, 'C':0, 'D':0, 'E':0, 'F':0}
