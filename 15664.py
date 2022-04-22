@@ -1,4 +1,4 @@
-#   N°ú M (10)
+#   Nï¿½ï¿½ M (10)
 N, M = map(int, input().split())
 numList = list(map(int,input().split()))
 numList.sort()

@@ -20,5 +20,4 @@ for w in words:
     if tri == 0:
         ans += 1
 
-
 print(ans)
