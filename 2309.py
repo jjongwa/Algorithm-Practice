@@ -1,3 +1,18 @@
+from itertools import combinations
+little = []
+for _ in range(9):
+    little.append(int(input()))
+
+for i in combinations(little, 7):
+    if sum(i) == 100:
+        ans = sorted(i)
+
+for i in ans:
+    print(i)
+
+
+
+'''
 little = []
 for i in range(9):
     little.append(int(input()))
@@ -14,3 +29,4 @@ little.sort()
 
 for i in little:
     print(i)
+'''
