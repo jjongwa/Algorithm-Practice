@@ -6,8 +6,6 @@ N = int(input())
 adj = []
 for _ in range(N):
     adj.append(list(input().strip()))
-#print(adj)
-
 
 def bfs(start, line):
     dq = deque()
@@ -27,7 +25,5 @@ for i in range(N):
     chk = [0] * N
     bfs(i,0)
     ans = max(ans, sum(chk)-1)
-
-    
 
 print(ans)
