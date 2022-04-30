@@ -12,6 +12,3 @@ for i in range(len(S)):
 
 for i in ans:
     print(i,end=' ')
-         
-
-
