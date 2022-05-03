@@ -16,7 +16,7 @@ for _ in range(N):
 for _ in range(M):
     p = int(input())
     index = bisect_left(power, p)
-    print(index)
+    #print(index)
     print(title[index - 1])
 
 '''
