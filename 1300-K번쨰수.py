@@ -3,8 +3,6 @@ k = int(input())
 
 lo, hi = 1, N*N
 
-
-
 def is_possible(cnt):
     return cnt < k
 
