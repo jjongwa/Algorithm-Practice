@@ -8,7 +8,7 @@ def is_possible(mid):
     for t in test:
         cnt += mid//t
     return cnt >= M
-ans =  hi
+ans = hi
 while lo <= hi:
     mid = (lo + hi) // 2
     if is_possible(mid):
