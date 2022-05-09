@@ -21,6 +21,28 @@ def bfs(start_y, start_x):
 
 
 
+SELECT C1.NAME NAME_X, C2.NAME NAME_Y, count(C1.CART_ID) "장바구니 수"
+from CART_PRODUCTS C1
+join CART_PRODUCTS C2 on C1.CART_ID = C2.CART_ID
+group by C1.CART_ID
+
+-- 코드를 입력하세요
+SELECT C1.NAME NAME_X, C2.NAME NAME_Y, count(C1.CART_ID) "장바구니 수"
+from (select distinct C.CART_ID, distinct C.NAME
+      from CART_PRODUCTS C) C1
+join (select distinct C.CART_ID, distinct C.NAME
+      from CART_PRODUCTS C)C2 on C1.CART_ID = C2.CART_ID and C1.Name != C2.Name
+group by C1.CART_ID
+
+
+
+SELECT C1.NAME NAME_X, C2.NAME NAME_Y, count(C1.CART_ID) "장바구니 수"
+from (select distinct C.CART_ID, C.NAME
+      from CART_PRODUCTS C) C1
+join (select distinct C.CART_ID, C.NAME
+      from CART_PRODUCTS C)C2 on C1.CART_ID = C2.CART_ID and C1.Name != C2.Name
+group by C1.CART_ID
+order by C1.name, C2.name
 
 '''
 # BFS
