@@ -1,7 +1,7 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
-from itertools import combinations
+
 n = int(input())
 
 square = [x**2 for x in range(int(n**(1/2))+1)]
@@ -17,7 +17,7 @@ for i in range(2, n+1):
         dp[i] = i
 
 for i in range(2, n+1):
-    for j in range(2, int(i**(1/2))):
+    for j in range(2, int(i**(1/2))+1):
         dp[i] = min(dp[i], dp[j*j]+dp[i-j*j])
 
 print(dp[n])
