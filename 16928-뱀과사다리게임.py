@@ -4,10 +4,10 @@ sys.stdin = open('input.txt', 'r')
 from collections import deque
 
 N, M = map(int, input().split())
-warp = {}
+warp = []
 for _ in range(N+M):
     a, b = map(int, input().split())
-    warp[a] = b
+    warp.append((a,b))
 
 visited = [0 for _ in range(101)]
 dq = deque([1])
