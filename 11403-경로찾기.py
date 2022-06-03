@@ -25,10 +25,3 @@ for i in range(N):
     for j in range(N):
         print(ans[i][j], end=' ')
     print()
-
-        
-
-
-
-
-
