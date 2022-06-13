@@ -1,12 +1,17 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
+input = sys.stdin.readline
+print = sys.stdout.write
 N = int(input())
-l = []
-for _ in range(N):
-    n = int(input())   
-    l.append(n)
 
-l.sort()
-for i in l:
-    print(i)
+count = [0 for _ in range(10001)]
+
+for _ in range(N):
+    n = int(input())
+    count[n] += 1
+
+for i in range(1, 10001):
+    for j in range(count[i]):
+        print(str(i))
+        print("\n")
