@@ -11,43 +11,43 @@ for i in range(N):
         if place[i][j] == 9:
             shark = (i, j)
 
-dx = (-1,0,1,0)
-dy = (0,-1,0,1)
+dx = (-1,0,0,1)
+dy = (0,-1,1,0)
 
 def is_possible(x, y, lv):
     return 0<=x<N and 0<=y<N and lv >= place[x][y]
 
-
-def bfs(x, y, cnt, lv, eat, limit):
+def bfs(x,y, lv, lv_cnt, cnt, chk):
     dq = deque()
-    dq.append((x, y, cnt, lv, eat, limit))  #   count, level, eat, limit
-    check = [[0 for _ in range(N)] for i in range(N)]
-    check[x][y] = 1
+    dq.append((x,y,lv,lv_cnt, cnt,chk))
+    cct = 0
     while dq:
-        x, y, cnt, lv, eat, limit = dq.popleft()
+        now_x, now_y, now_lv, now_lv_cnt, now_cnt, now_chk = dq.popleft()
+        if place[now_x][now_y] < now_lv:
+            now_lv_cnt += 1
+            if now_lv_cnt == now_lv:
+                now_lv += 1
+                now_lv_cnt = 0
+            return (1, now_x, now_y, now_lv, now_lv_cnt, now_cnt, now_chk)
         for i in range(4):
-            nx, ny = x+dx[i], y+dy[i]
-            if is_possible(nx,ny, lv) and check[nx][ny] == 0:
-                if 0 < place[nx][ny] < lv:
-                    eat += 1
-                    if eat == lv:
-                        lv += 1
-                        eat = 0
-                    return (nx, ny, cnt+limit+1, lv, eat, 0)
-                else:
-                    dq.append((nx, ny, cnt, lv, eat, limit + 1))
-                    check[nx][ny] = 1
-    print(">")
-    return -1
+            nx, ny = now_x+dx[i], now_y+dy[i]
+            if is_possible(nx,ny, now_lv) and chk[nx][ny] == 0:
+                now_chk[nx][ny] = 1
+                dq.append((nx, ny, now_lv, now_lv_cnt, now_cnt+1,now_chk))
+    return (0, now_x, now_y, now_lv, now_lv_cnt, now_cnt, now_chk)
 
 ans = 0
-way = bfs(shark[0], shark[1], 0, 2, 0, 0)
+check = [[0 for _ in range(N)] for _ in range(N)]
+triger, x, y, lv, lv_cnt, count, chk = bfs(shark[0], shark[1], 2, 0, 0, check)
+
 while True:
-    print(way) 
-    if way == -1:
-        print(ans)
-        exit(0)
-        break
+    if triger == 1:
+        ans += count
+        triger, x, y, lv, lv_cnt, count, chk  = bfs(x, y, lv, lv_cnt, count, chk)
+        print(x, y)
     else:
-        way = bfs(way[0], way[1], way[2], way[3], way[4], way[5])
-        ans += way[2]
+        print(ans)
+        break
+
+
+

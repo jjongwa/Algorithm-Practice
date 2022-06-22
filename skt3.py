@@ -37,5 +37,3 @@ for i in range(len(clients)):
             break
 
 print(answer)
-
-
