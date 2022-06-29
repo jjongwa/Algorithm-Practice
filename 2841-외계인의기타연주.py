@@ -1,42 +1,21 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
-
-
-
-logs = ["morgan sort", "felix sort", "morgan sqrt", "morgan sqrt", "rohan reverse", "rohan reverse"]
-answer = []
-li = {}
-plist = []
-for log in logs:
-    person, problem =  log.split(" ")
-    if person not in plist:
-        plist.append(person)
-    if problem not in li:
-        li[problem] = [person]
-    if problem in li and person not in li[problem]:
-        li[problem].append(person)
-
-
-
-print(li)
-print(plist)
-for i in li:
-    if len(li[i]) >= len(plist)/2:
-        print(len(li[i]), len(plist)/2)
-        answer.append(i)
-
-
-print(answer)
-
-
-
-
-
-'''
 N, P = map(int, input().split())
+stack = [[] for _ in range(N+1)]
+ans = 0
 for _ in range(N):
-    line, fret = map(int, input().split())
-'''
+    l, f = map(int, input().split())
+    while len(stack[l]) > 0:
+        #print(len(stack[l]))
+        if stack[l][len(stack[l])-1] > f:
+            stack[l].pop()
+            ans += 1
+            #print(len(stack[l]))
+        else:
+            break
+    if len(stack[l]) == 0 or stack[l][len(stack[l])-1] != f:
+        stack[l].append(f)
+        ans += 1
 
-
+print(ans)
