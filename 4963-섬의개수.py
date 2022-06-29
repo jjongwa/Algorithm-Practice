@@ -1,6 +1,7 @@
 import sys
 sys.stdin = open('input.txt', 'r')
 
+sys.setrecursionlimit(10**6)
 dy = (0,1,0,-1,1,1,-1,-1)
 dx = (1,0,-1,0,-1,1,-1,1)
 
