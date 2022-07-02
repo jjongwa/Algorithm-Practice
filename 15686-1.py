@@ -13,6 +13,9 @@ sys.stdin = open('input.txt', 'r')
 
 from itertools import combinations
 
+def dist(a,b):
+    return abs(a[0]-b[0]) + abs(a[1]-b[1])
+
 N, M = map(int,input().split())
 houses = []
 chickens = []
@@ -23,6 +26,14 @@ for i in range(N):
         elif v == 2:
             chickens.append((i,j))
 
+ans = 2*N*len(houses)
 
-print(houses)
-print(chickens)            
+for combi in combinations(chickens, M):
+    tot = 0
+    for h in houses:
+        tot += min(dist(h,k) for k in combi)
+        
+    ans = min(ans, tot)
+
+print(ans)
+
