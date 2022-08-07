@@ -78,3 +78,10 @@ order by prr.created_at, p.name
 select pr.id, pr.place_id, month(pr.created_at) created_at
 from place_reviews pr
 group by month(pr.created_at)
+
+
+select pr.id, pr.place_id, month(pr.created_at) created_at
+from place_reviews pr
+group by month(pr.created_at), pr.place_id
+
+
