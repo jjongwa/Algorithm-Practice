@@ -24,3 +24,4 @@ for u in up:
 print()
 for d in down:
     print(d, end=" ")
+
