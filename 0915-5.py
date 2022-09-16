@@ -48,5 +48,3 @@ while dq:
             exit(0)
         else:
             dq.append([c, nxtsum])
-
-    
