@@ -1,4 +1,5 @@
 import sys
+sys.setrecursionlimit(10**7)
 INT_MAX = sys.maxsize
 n, m  = map(int, input().split())
 coinList = list(map(int, input().split()))
