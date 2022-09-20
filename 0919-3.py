@@ -1,18 +1,38 @@
-from itertools import combinations
 N = int(input())
 numList = list(map(int,input().split()))
-s_num = sum(numList)
-dp = [0 for _ in range(s_num+2)]
+numList.sort()
 
-def dpdp(li, s):
-    print(li, s)
-    for i in li:
-        if dp[i+s] == 0:            
-            tmp = li.copy()
-            tmp.remove(i)
-            dp[i+s] = 1            
-            if tmp is not None:                
-                dpdp(tmp, i+s)
-dpdp(numList, 0)
+sum_val = 1
+for elem in numList:
+    if elem > sum_val:
+        break
+    sum_val += elem
 
-print(dp)
+print(sum_val)
+
+
+
+
+
+'''
+N = int(input())
+numList = list(map(int,input().split()))
+possible_sums = set()
+
+def combination(idx, sum_val):
+    if idx == N:
+        possible_sums.add(sum_val)
+        return
+    
+    combination(idx+1, sum_val)
+    combination(idx+1, sum_val+numList[idx])
+
+combination(0,0)
+
+num = 1
+while True:
+    if num not in possible_sums:
+        print(num)
+        break
+    num+=1
+'''
