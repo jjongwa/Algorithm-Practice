@@ -1,33 +1,37 @@
 import sys
-import copy
 INT_MAX = sys.maxsize
 N, M = map(int, input().split())
 coin = list(map(int, input().split()))
 coin.sort()
-dp = [INT_MAX] * (M+1)
+'''
+dp  =[[INT_MAX for _ in range(M+1)] for _ in range(N+1)]
+dp[0][0] = 0
 
-def pick(num, c, last):
-    if c > M:
-        return
+for i in range(1,N+1):
+    for j in range(M+1):
+        if j >= coin[i]:
+            dp[i][j] = min(dp[i-1][j-coin[i]]+1, dp[i-1][j])
 
-    for i in range(N):
-        if c+coin[i] > M or i in last:
-            continue
-        tmp = copy.deepcopy(last)
-        
-        if dp[c+coin[i]] == INT_MAX:
-            dp[c+coin[i]] = num+1
-            tmp.append(i)
-            pick(num+1, c+coin[i], tmp) 
         else:
-            if num+1 < dp[c+coin[i]]:
-                tmp.append(i)
-                dp[c+coin[i]] = num + 1
-                pick(num+1, c+coin[i], tmp)
-            else:
-                pick(num, c+coin[i],tmp)        
+            dp[i][j] = dp[i-1][j]
 
-        if c+ coin[i] == M:
-            print(tmp)
-pick(0,0,[])
+ans = dp[N][M]
+
+if ans == INT_MAX:
+    print(-1)
+else:
+    print(ans)
+'''
+dp = [INT_MAX] * (M+1)
+dp[0] = 0
+
+for i in  range(N):
+    for j in range(M,-1,-1):
+        if j-coin[i] >= 0 and dp[j-coin[i]] != INT_MAX:
+            dp[j] = min(dp[j], dp[j-coin[i]]+1)
+    # print(dp) 
 print(dp)
+if dp[M] == INT_MAX:
+    print(-1)
+else:
+    print(dp[M])
