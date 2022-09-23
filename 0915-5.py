@@ -32,19 +32,30 @@ print(-1)
 # 방향성이 없는 문제는 dp로 풀리지 않는다
 
 from collections import deque
-
+import sys
+MAX_INT = sys.maxsize
 n, m  = map(int, input().split())
-coinList = list(map(int, input().split()))
+coins = list(map(int, input().split()))
+
+cnt = [MAX_INT]*(m+1)
+chk = [0] *(m+1)
 
 dq = deque()
 dq.append([0,0])
+chk[0] = 1
 
 while dq:
-    now, nowsum  = dq.popleft()
-    for c in coinList:
-        nxtsum = nowsum + c
-        if nxtsum == m:
-            print(now+1)
-            exit(0)
-        else:
-            dq.append([c, nxtsum])
+    nowcnt, nowsum  = dq.popleft()
+    
+    for c in coins:
+        nxt_sum = nowsum + c
+        if 0 <= nxt_sum <= m and chk[nxt_sum] == 0:
+            cnt[nxt_sum] = nowcnt+1
+            chk[nxt_sum] = 1
+            dq.append([nowcnt+1, nxt_sum])
+
+if cnt[m] == MAX_INT:
+    print(-1)
+else:
+    print(cnt[m])
+    
