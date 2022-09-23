@@ -7,16 +7,12 @@ coinList = list(map(int, input().split()))
 dp = [INT_MAX for _ in range(m+1)]
 dp[0] = 0
 
-def dpdp(st):
-    for c in coinList:
-        if st+c > m:
-            continue
-        dp[st+c] = min(dp[st+c], dp[st]+1)
-        dpdp(st+c)
+for i in range(1,m+1):
+    for j in range(n):
+        if i >= coinList[j]: # j번째 동전의 값이 i 보다 작다 ==> 동전 사용 가능하다
+            dp[i] = min(dp[i], dp[i - coinList[j]] + 1)
 
-dpdp(0)
-
-ans = dp[m]
-if ans == INT_MAX:
-    ans = -1
-print(ans)
+if dp[m] == INT_MAX:
+    print(-1)
+else:
+    print(dp[m])
