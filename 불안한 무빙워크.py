@@ -41,10 +41,10 @@ while True:
         print(act)
         break
 
-    print(walk)
-    print(man)
-    print(act)
-    print()
+#     print(walk)
+#     print(man)
+#     print(act)
+#     print()
 
-print(walk)
-print(man)
+# print(walk)
+# print(man)
