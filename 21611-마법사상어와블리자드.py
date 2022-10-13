@@ -33,6 +33,7 @@ def get_list():
 
 def kill(lii):
     global ans
+    global one, two, thr
     new_li = [lii[0]]
     now_num = lii[0]
     num_cnt = 1
@@ -40,7 +41,13 @@ def kill(lii):
         if lii[l] != lii[l - 1]:
             if num_cnt >= 4:
                 for _ in range(num_cnt):
-                    ans += new_li.pop()
+                    number = new_li.pop()
+                    if number == 1:
+                        one += 1
+                    elif number == 2:
+                        two += 1
+                    elif number == 3:
+                        thr += 1
             num_cnt = 1
             now_num = lii[l]
         else:
@@ -50,7 +57,13 @@ def kill(lii):
 
     if num_cnt >= 4:
         for _ in range(num_cnt):
-            ans += new_li.pop()
+            number = new_li.pop()
+            if number == 1:
+                one += 1
+            elif number == 2:
+                two += 1
+            elif number == 3:
+                thr += 1
     return new_li
 
 
@@ -58,18 +71,17 @@ def remake(li):
     new_li = []
     now_num = li[0]
     now_cnt = 1
-    for i in range(1,len(li)):
+    for i in range(1, len(li)):
         if now_num != li[i]:
             new_li.append(now_cnt)
             new_li.append(now_num)
             now_num = li[i]
             now_cnt = 1
         else:
-            now_cnt +=1
+            now_cnt += 1
     new_li.append(now_cnt)
     new_li.append(now_num)
     return new_li
-
 
 
 def fill(li):
@@ -95,27 +107,32 @@ def fill(li):
         y += dy[di]
     return new_li
 
-dxs = (0, 1, 0, -1)
-dys = (1, 0, -1, 0)
+
+dxs = (-1, 1, 0, 0)
+dys = (0, 0, -1, 1)
+one, two, thr = 0, 0, 0
 ans = 0
 for _ in range(m):
     d, p = map(int, input().split())
 
     x, y = n // 2, n // 2
     for i in range(p):
-        ans += grid[x + dxs[d]][y + dys[d]]
-        grid[x + dxs[d]][y + dys[d]] = 0
-        x += dxs[d]
-        y += dys[d]
+        grid[x + dxs[d - 1]][y + dys[d - 1]] = 0
+        x += dxs[d - 1]
+        y += dys[d - 1]
 
     li = get_list()
+    if len(li) == 0:
+        break
     new_li = kill(li)
+    if len(new_li) == 0:
+        break
     tmp = kill(new_li)
     while new_li != tmp:
         new_li = tmp
         tmp = kill(new_li)
 
-    re_list = remake(new_li)
+    re_list = remake(tmp)
     grid = fill(re_list)
 
     # print(ans)
@@ -123,7 +140,7 @@ for _ in range(m):
     # print(new_li)
     # print()
 
-print(ans)
+print(one + two * 2 + thr * 3)
 
 for i in range(n):
     print(grid[i])
