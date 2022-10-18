@@ -32,10 +32,10 @@ print()
 n_grid3 = [[0 for _ in range(4)] for _ in range(3)]
 for i in range(3):
     for j in range(4):
-        n_grid3[i][j] = grid[3-1-j][i]
+        n_grid3[i][j] = grid[4-1-j][i]
 
 
 print(n_grid2)
 for i in range(3):
-    print(*n_grid3[i])
+    print(*n_grid2[i])
 print()
