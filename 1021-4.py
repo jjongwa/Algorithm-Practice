@@ -14,8 +14,6 @@ def is_pellin(word):
 # print(S)
 
 for i in range(len(C)):
-    if is_pellin(S) == 0:
-
 
     new_C = C[:i+1]
     new_C.sort()
