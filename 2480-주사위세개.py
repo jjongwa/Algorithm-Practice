@@ -12,8 +12,8 @@ if a == c:
     eNum = a
 
 if equal == 0:
-    print(max(a, b, c)* 100)
+    print(max(a, b, c) * 100)
 elif equal == 1:
-    print(1000+eNum*100)
+    print(1000 + eNum * 100)
 elif equal == 3:
-    print(10000+a*1000)
+    print(10000 + a * 1000)
